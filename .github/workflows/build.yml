@@ -1,0 +1,26 @@
+name: Build Only (No PR)
+
+on:
+  push:
+    branches:
+      - main   
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show branch
+        run: echo Building branch %GITHUB_REF_NAME%
+
+      - name: Check files
+        run: dir
+
+      - name: Build
+        run: echo GitHub Actions build successful > build-report.txt
+
+      - name: Report of Build
+        run: type build-report.txt
