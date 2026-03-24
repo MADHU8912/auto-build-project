@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking source code'
+                echo 'Checking source code from GitHub'
             }
         }
 
@@ -14,20 +14,25 @@ pipeline {
             }
         }
 
-        stage('Build Report') {
+        stage('Build') {
             steps {
-                bat 'echo Build triggered automatically from GitHub change > build-report.txt'
-                bat 'type build-report.txt'
+                bat 'echo Jenkins build successful > jenkins-build.txt'
+            }
+        }
+
+        stage('Report of Build') {
+            steps {
+                bat 'type jenkins-build.txt'
             }
         }
     }
 
     post {
         success {
-            echo 'Automatic build completed successfully'
+            echo 'Jenkins pipeline completed successfully'
         }
         failure {
-            echo 'Automatic build failed'
+            echo 'Jenkins pipeline failed'
         }
     }
 }
