@@ -1,9 +1,13 @@
-name: Build Only (No PR)
+name: Build PR Pipeline
 
 on:
   push:
     branches:
-      - main   
+      - main
+      - pro
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
